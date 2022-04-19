@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# move existing crontab file and replace with the one in this repo
+mv /var/spool/cron/crontabs/root /root-crontab.bak
+cp /root/moxacellreset/scripts/root /var/spool/cron/crontabs/
+
+create log files
+
+touch /home/moxa/app/inetmonit-success-events.log
+touch /home/moxa/app/inetmonit-fail-events.log
+
+# assign file permissions and ownership
+chmod +x /root/moxacellreset/scripts/inetmonit
+chmod +rw /home/moxa/app/inetmonit-fail-events.log
+chmod +rw /home/moxa/app/inetmonit-success-events.log
+chmod 600 /var/spool/cron/crontabs/root
+chown root:root /var/spool/cron/crontabs/root
+chown moxa:moxa -R /home/moxa/app/
+bash /root/moxacellreset/scripts/inetmonit
+cat /home/moxa/app/
+exit 0
