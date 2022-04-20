@@ -25,7 +25,7 @@ function _main() {
 
 	function _filePerm() {
 		# assign file permissions and ownership
-		chmod +x /root/moxacellreset/scripts/inetmonit;
+		chmod +x /root/moxacellreset/scripts/inetmonit.sh;
 		chmod +rw /home/moxa/app/inetmonit-fail-events.log;
 		chmod +rw /home/moxa/app/inetmonit-success-events.log;
 		chmod 600 /var/spool/cron/crontabs/root;

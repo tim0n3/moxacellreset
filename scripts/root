@@ -27,4 +27,4 @@
 @reboot "sudo cell_mgmt start APN=axxess"
 @hourly "sudo bash /home/moxa/check_connection.sh"
 @hourly reboot now
-*/10 * * * * /root/moxacellreset/scripts/inetmonit
+*/10 * * * * /root/moxacellreset/scripts/inetmonit.sh
