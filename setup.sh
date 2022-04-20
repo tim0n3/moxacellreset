@@ -1,38 +1,18 @@
 #!/bin/bash
 
 function _main() {
-	function _cronBak() {
+	# move script
+	function _script() {
 	# move existing crontab file and replace with the one in this repo
-	FILE=/var/spool/cron/crontabs/root
+	FILE=/usr/sbin/cellular-keepalive.sh
 	if test -f "$FILE"; then
-		mv /var/spool/cron/crontabs/root /root-crontab.bak;
-		cp /root/moxacellreset/scripts/root /var/spool/cron/crontabs/;
-		echo backing up root crontab;
+		mv /usr/sbin/cellular-keepalive.sh /root/cellular-keepalive.bak;
+		cp /root/moxacellreset/advanced/cellular-keepalive.sh /usr/sbin/;
+		echo moving keepalive script to /usr/sbin/;
 	else
 		echo "$FILE doesn't exist."
-		cp /root/moxacellreset/scripts/root /var/spool/cron/crontabs/;
+		cp /root/moxacellreset/advanced/cellular-keepalive.sh /usr/sbin/;
 	fi
 	}
 	_cronBak;
-
-	function _logs() {
-		# create log files
-		touch /home/moxa/app/inetmonit-success-events.log;
-		touch /home/moxa/app/inetmonit-fail-events.log;
-	}
-	_logs;
-
-	function _filePerm() {
-		# assign file permissions and ownership
-		chmod +x /root/moxacellreset/scripts/inetmonit.sh;
-		chmod +rw /home/moxa/app/inetmonit-fail-events.log;
-		chmod +rw /home/moxa/app/inetmonit-success-events.log;
-		chmod 600 /var/spool/cron/crontabs/root;
-		chown root:root /var/spool/cron/crontabs/root;
-		#chown moxa:moxa -R /home/moxa/app/;
-		bash /root/moxacellreset/scripts/inetmonit.sh;
-		cat /home/moxa/app/inetmonit-*.log;
-	}
-	_filePerm;
 }
-_main;
