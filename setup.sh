@@ -29,9 +29,9 @@ function _main() {
 		chmod +rw /home/moxa/app/inetmonit-success-events.log;
 		chmod 600 /var/spool/cron/crontabs/root;
 		chown root:root /var/spool/cron/crontabs/root;
-		chown moxa:moxa -R /home/moxa/app/;
-		bash /root/moxacellreset/scripts/inetmonit;
-		cat /home/moxa/app/;
+		#chown moxa:moxa -R /home/moxa/app/;
+		bash /root/moxacellreset/scripts/inetmonit.sh;
+		cat /home/moxa/app/inetmonit-*.log;
 	}
 	_filePerm;
 }
