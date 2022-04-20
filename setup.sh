@@ -5,21 +5,20 @@ function _main() {
 	# move existing crontab file and replace with the one in this repo
 	FILE=/var/spool/cron/crontabs/root
 	if test -f "$FILE"; then
-		mv /var/spool/cron/crontabs/root /root-crontab.bak
-		cp /root/moxacellreset/scripts/root /var/spool/cron/crontabs/
-		echo backing up root crontab
-		exit 0
+		mv /var/spool/cron/crontabs/root /root-crontab.bak;
+		cp /root/moxacellreset/scripts/root /var/spool/cron/crontabs/;
+		echo backing up root crontab;
 	else
 		echo "$FILE doesn't exist."
-		cp /root/moxacellreset/scripts/root /var/spool/cron/crontabs/
+		cp /root/moxacellreset/scripts/root /var/spool/cron/crontabs/;
 	fi
 	}
 	_cronBak;
 
 	function _logs() {
 		# create log files
-		touch /home/moxa/app/inetmonit-success-events.log
-		touch /home/moxa/app/inetmonit-fail-events.log
+		touch /home/moxa/app/inetmonit-success-events.log;
+		touch /home/moxa/app/inetmonit-fail-events.log;
 	}
 	_logs;
 
